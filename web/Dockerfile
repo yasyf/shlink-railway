@@ -1,10 +1,11 @@
 FROM shlinkio/shlink-web-client:latest
 
-ARG INITIAL_API_KEY
 ARG PORT
-ARG RAILWAY_STATIC_URL
+ARG ADMIN_API_KEY
+ARG API_URL
 
-ENV SHLINK_SERVER_URL=${RAILWAY_STATIC_URL}
-ENV SHLINK_SERVER_API_KEY=${INITIAL_API_KEY}
+ADD railway-entrypoint.sh .
 
 EXPOSE ${PORT}
+ENTRYPOINT ["/bin/sh", "./railway-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]
