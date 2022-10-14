@@ -1,1 +1,0 @@
-FROM shlinkio/shlink:stable
